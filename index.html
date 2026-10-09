@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Abedin Apps Store — secure app downloads" />
+  <title>Abedin Apps Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070b16;
+      --card: rgba(255,255,255,.04);
+      --card-border: rgba(255,255,255,.09);
+      --text: #f4f7ff;
+      --muted: rgba(244,247,255,.62);
+      --accent: #5b8cff;
+      --accent-2: #7c5cff;
+      --good: #3dd68c;
+      --shadow: 0 24px 80px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(91,140,255,.28), transparent 55%),
+        radial-gradient(900px 500px at 90% 0%, rgba(124,92,255,.22), transparent 50%),
+        radial-gradient(700px 400px at 50% 100%, rgba(61,214,140,.08), transparent 45%),
+        var(--bg);
+      padding: 28px 18px 48px;
+    }
+    .wrap { width: min(980px, 100%); margin: 0 auto; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-bottom: 28px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid; place-items: center; font-weight: 800; font-size: 18px;
+      box-shadow: 0 10px 30px rgba(91,140,255,.35);
+    }
+    .brand h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; }
+    .brand p { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .badge {
+      font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      padding: 8px 12px; border-radius: 999px;
+      background: rgba(61,214,140,.12); color: var(--good);
+      border: 1px solid rgba(61,214,140,.25);
+    }
+    .hero {
+      background: var(--card); border: 1px solid var(--card-border);
+      border-radius: calc(var(--radius) + 4px); padding: 28px 24px;
+      box-shadow: var(--shadow); margin-bottom: 18px;
+    }
+    .hero h2 {
+      font-size: clamp(1.55rem, 3vw, 2.1rem); font-weight: 800;
+      letter-spacing: -.03em; line-height: 1.15; margin-bottom: 10px;
+    }
+    .hero h2 span {
+      background: linear-gradient(90deg, #9ec1ff, #c4b5ff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero > p { color: var(--muted); max-width: 54ch; line-height: 1.55; font-size: .98rem; }
+
+    .app {
+      display: grid; grid-template-columns: 96px 1fr; gap: 18px; align-items: start;
+      background: var(--card); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow);
+    }
+    @media (max-width: 640px) {
+      .app { grid-template-columns: 1fr; }
+      header { flex-wrap: wrap; }
+    }
+    .icon {
+      width: 96px; height: 96px; border-radius: 24px;
+      background: linear-gradient(160deg, #2aabee 0%, #229ed9 55%, #1b86c9 100%);
+      display: grid; place-items: center; box-shadow: 0 14px 36px rgba(34,158,217,.35);
+      position: relative; overflow: hidden;
+    }
+    .icon::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 45%);
+    }
+    .icon svg { width: 48px; height: 48px; fill: #fff; position: relative; z-index: 1; }
+    .meta h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; }
+    .meta .sub { color: var(--muted); font-size: .9rem; margin: 4px 0 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .chip {
+      font-size: .75rem; font-weight: 600; color: var(--muted);
+      padding: 6px 10px; border-radius: 999px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    }
+    .chip strong { color: var(--text); font-weight: 700; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none; border: 0; cursor: pointer;
+      padding: 13px 18px; border-radius: 14px; font-weight: 700; font-size: .95rem;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary {
+      color: #061018;
+      background: linear-gradient(90deg, #7eb6ff, #a78bfa);
+      box-shadow: 0 12px 28px rgba(126,182,255,.28);
+    }
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .note {
+      margin-top: 14px; font-size: .82rem; color: var(--muted); line-height: 1.5;
+    }
+    footer {
+      margin-top: 28px; text-align: center; color: var(--muted); font-size: .8rem;
+    }
+    footer a { color: #9ec1ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">A</div>
+        <div>
+          <h1>Abedin Apps Store</h1>
+          <p>Professional app distribution</p>
+        </div>
+      </div>
+      <div class="badge">Verified build</div>
+    </header>
+
+    <section class="hero">
+      <h2>Download apps from <span>Abedin Apps Store</span></h2>
+      <p>Clean, fast installs. Builds are hosted on GitHub and served through this store page.</p>
+    </section>
+
+    <section class="app">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.78 3.5c.3-.58 1.14-.58 1.44 0l1.1 2.12c.12.23.34.39.6.43l2.34.34c.64.09.9.88.43 1.33l-1.7 1.65c-.18.18-.27.43-.22.68l.4 2.33c.11.64-.56 1.13-1.13.83l-2.09-1.1a.77.77 0 0 0-.72 0l-2.09 1.1c-.57.3-1.24-.19-1.13-.83l.4-2.33a.77.77 0 0 0-.22-.68L5.31 7.72c-.47-.45-.21-1.24.43-1.33l2.34-.34c.26-.04.48-.2.6-.43l1.1-2.12Z"/>
+          <path d="M4 13.5c0-.28.22-.5.5-.5h15c.28 0 .5.22.5.5v6A2.5 2.5 0 0 1 17.5 22h-11A2.5 2.5 0 0 1 4 19.5v-6Z" opacity=".9"/>
+        </svg>
+      </div>
+      <div class="meta">
+        <h3>Telegram</h3>
+        <div class="sub">Open-source Android build · Standalone AFAT</div>
+        <div class="chips">
+          <span class="chip">Version <strong>12.10.6</strong></span>
+          <span class="chip">Build <strong>7112</strong></span>
+          <span class="chip">Size <strong>62 MB</strong></span>
+          <span class="chip">Package <strong>org.telegram.messenger.web</strong></span>
+          <span class="chip">API <strong>default</strong></span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="/Telegram-12.10.6.apk" download="Telegram-12.10.6.apk">
+            Download APK
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/abedinhardteam-alt/abedin-apps-store" target="_blank" rel="noopener">
+            View on GitHub
+          </a>
+        </div>
+        <p class="note">
+          Install tip: enable <b>Install unknown apps</b> for your browser/files app, then open the APK.
+          Source: official Telegram for Android (DrKLO/Telegram), default APP_ID / APP_HASH kept.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> Abedin Apps Store · Hosted on Vercel · APK on GitHub
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
